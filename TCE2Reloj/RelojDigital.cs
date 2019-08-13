@@ -322,22 +322,36 @@ namespace TCE2Reloj
         int segTEM = 0, horitaTem= 0, minTem=0;
         bool sonando = true;
         int xyz = -1;
+        bool pausado = false;
+        bool borrado = false;
         private void IniTEM_Click(object sender, EventArgs e)
         {
             if(iniTEM.Text == "INICIAR")
             {
-                try { segTEM = int.Parse(textBoxSegundo.Text);}
-                catch{segTEM = 0;}
-                try{minTem = int.Parse(textBoxMinuto.Text);}
-                catch{minTem = 0;}
-                try{horitaTem = int.Parse(textBoxHora.Text);}
-                catch{horitaTem = 0;}
+                if(pausado == false)
+                {
+                    try { segTEM = int.Parse(textBoxSegundo.Text); }
+                    catch { segTEM = 0; }
+                    try { minTem = int.Parse(textBoxMinuto.Text); }
+                    catch { minTem = 0; }
+                    try { horitaTem = int.Parse(textBoxHora.Text); }
+                    catch { horitaTem = 0; }
+                }
                 segundoTEM.Text = segTEM.ToString();
                 minutoTem.Text = minTem.ToString();
                 horaTem.Text = horitaTem.ToString();
-                if (segTEM == 0 && minTem ==0 && horitaTem == 0)
-                {
+                limpiarTextBox();
+                pausado = true;
 
+                if (segTEM == 0 && minTem ==0 && horitaTem == 0 && pausado == true)
+                {
+                    timerTEM.Enabled = true;
+                    sonando = true;
+                    iniTEM.Text = "PARAR";
+                }
+                else if (segTEM == 0 && minTem == 0 && horitaTem == 0 && pausado == false)
+                {
+                    sonando = false;
                 }
                 else
                 {
@@ -412,6 +426,13 @@ namespace TCE2Reloj
             segundoTEM.Text = segTEM.ToString();
             minutoTem.Text = minTem.ToString();
             horaTem.Text = horitaTem.ToString();
+            pausado = false;
+//            borrado = true;
+//            sonando = false;
+            limpiarTextBox();
+        }
+        private void limpiarTextBox()
+        {
             textBoxHora.Clear();
             textBoxMinuto.Clear();
             textBoxSegundo.Clear();
