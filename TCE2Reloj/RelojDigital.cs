@@ -106,7 +106,6 @@ namespace TCE2Reloj
             }
         }
 
-
         private void ArribaHora_Click(object sender, EventArgs e)
         {
             hora = hora + 1;
@@ -142,6 +141,10 @@ namespace TCE2Reloj
             Application.Exit();
         }
 
+        private void BtnMinizar_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
@@ -216,8 +219,6 @@ namespace TCE2Reloj
                 pictureBox5.Load("num_" + min2 + ".jpg");
             }
         }
-
-
 
         // CRONOMETRO
         bool encendidoCR = false;
@@ -320,10 +321,11 @@ namespace TCE2Reloj
         SoundPlayer mp = new SoundPlayer();
 
         int segTEM = 0, horitaTem= 0, minTem=0;
+
         bool sonando = true;
         int xyz = -1;
         bool pausado = false;
-        bool borrado = false;
+//        bool borrado = false;
         private void IniTEM_Click(object sender, EventArgs e)
         {
             if(iniTEM.Text == "INICIAR")

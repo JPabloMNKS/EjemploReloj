@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RelojDigital));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnMinizar = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
@@ -94,6 +95,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Teal;
+            this.panel1.Controls.Add(this.btnMinizar);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -104,6 +106,23 @@
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Panel1_MouseMove);
             this.panel1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Panel1_MouseUp);
             // 
+            // btnMinizar
+            // 
+            this.btnMinizar.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnMinizar.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnMinizar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkCyan;
+            this.btnMinizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
+            this.btnMinizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMinizar.Font = new System.Drawing.Font("Microsoft YaHei UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMinizar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnMinizar.Location = new System.Drawing.Point(640, 0);
+            this.btnMinizar.Name = "btnMinizar";
+            this.btnMinizar.Size = new System.Drawing.Size(80, 80);
+            this.btnMinizar.TabIndex = 2;
+            this.btnMinizar.Text = "-";
+            this.btnMinizar.UseVisualStyleBackColor = true;
+            this.btnMinizar.Click += new System.EventHandler(this.BtnMinizar_Click);
+            // 
             // button1
             // 
             this.button1.Dock = System.Windows.Forms.DockStyle.Right;
@@ -111,7 +130,7 @@
             this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkCyan;
             this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft YaHei UI", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Font = new System.Drawing.Font("Microsoft YaHei UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button1.Location = new System.Drawing.Point(720, 0);
             this.button1.Name = "button1";
@@ -123,6 +142,7 @@
             // 
             // timer1
             // 
+            this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
             // metroTabControl1
@@ -133,7 +153,7 @@
             this.metroTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroTabControl1.Location = new System.Drawing.Point(0, 80);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 1;
+            this.metroTabControl1.SelectedIndex = 0;
             this.metroTabControl1.Size = new System.Drawing.Size(800, 370);
             this.metroTabControl1.TabIndex = 1;
             this.metroTabControl1.UseSelectable = true;
@@ -622,6 +642,7 @@
             this.Controls.Add(this.metroTabControl1);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "RelojDigital";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RelojDigital";
@@ -693,5 +714,6 @@
         private System.Windows.Forms.Label segundoTEM;
         private System.Windows.Forms.Label minutoTem;
         private System.Windows.Forms.Label horaTem;
+        private System.Windows.Forms.Button btnMinizar;
     }
 }
