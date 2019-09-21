@@ -4,7 +4,6 @@ E:\Codigos\clases de C# septimo\TCE2Reloj\TCE2Reloj\bin\Debug\TCE2Reloj.pdb
 E:\Codigos\clases de C# septimo\TCE2Reloj\TCE2Reloj\bin\Debug\MetroFramework.Design.dll
 E:\Codigos\clases de C# septimo\TCE2Reloj\TCE2Reloj\bin\Debug\MetroFramework.dll
 E:\Codigos\clases de C# septimo\TCE2Reloj\TCE2Reloj\bin\Debug\MetroFramework.Fonts.dll
-E:\Codigos\clases de C# septimo\TCE2Reloj\TCE2Reloj\obj\Debug\TCE2Reloj.csprojAssemblyReference.cache
 E:\Codigos\clases de C# septimo\TCE2Reloj\TCE2Reloj\obj\Debug\TCE2Reloj.Form1.resources
 E:\Codigos\clases de C# septimo\TCE2Reloj\TCE2Reloj\obj\Debug\TCE2Reloj.Properties.Resources.resources
 E:\Codigos\clases de C# septimo\TCE2Reloj\TCE2Reloj\obj\Debug\TCE2Reloj.RelojDigital.resources
@@ -13,3 +12,4 @@ E:\Codigos\clases de C# septimo\TCE2Reloj\TCE2Reloj\obj\Debug\TCE2Reloj.csproj.C
 E:\Codigos\clases de C# septimo\TCE2Reloj\TCE2Reloj\obj\Debug\TCE2Reloj.csproj.CopyComplete
 E:\Codigos\clases de C# septimo\TCE2Reloj\TCE2Reloj\obj\Debug\TCE2Reloj.exe
 E:\Codigos\clases de C# septimo\TCE2Reloj\TCE2Reloj\obj\Debug\TCE2Reloj.pdb
+E:\Codigos\clases de C# septimo\TCE2Reloj\TCE2Reloj\obj\Debug\TCE2Reloj.csprojAssemblyReference.cache

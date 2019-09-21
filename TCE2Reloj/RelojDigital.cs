@@ -134,6 +134,7 @@ namespace TCE2Reloj
         public RelojDigital()
         {
             InitializeComponent();
+            timer1.Enabled = true;
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -218,7 +219,74 @@ namespace TCE2Reloj
                 pictureBox4.Load("num_" + min1 + ".jpg");
                 pictureBox5.Load("num_" + min2 + ".jpg");
             }
+
+            Bitmap bmp;
+            Graphics g;
+            bmp = new Bitmap(200, 200);
+            g = Graphics.FromImage(bmp);
+
+
+            // Segundero
+            handCoord = msCoord(seg, secHAND);
+            g.DrawLine(new Pen(Color.Red, 1f), new Point(100, 100), new Point(handCoord[0], handCoord[1]));
+            // Minutero
+            handCoord = msCoord(min, minHAND);
+            g.DrawLine(new Pen(Color.Black, 3f), new Point(100, 100), new Point(handCoord[0], handCoord[1]));
+            // Hora
+            handCoord = hrCoord(hora%12,min, hrHAND);
+            g.DrawLine(new Pen(Color.Black, 5f), new Point(100, 100), new Point(handCoord[0], handCoord[1]));
+
+            picVacio.Image = bmp;
+            g.Dispose();
         }
+
+        int[] handCoord = new int[2];
+        int secHAND = 100, minHAND = 85, hrHAND = 65;
+
+
+        //coord for minute and second hand
+        private int[] msCoord(int val, int hlen)
+        {
+            int[] coord = new int[2];
+            val *= 6;   //each minute and second make 6 degree
+
+            if (val >= 0 && val <= 180)
+            {
+                coord[0] = 100 + (int)(hlen * Math.Sin(Math.PI * val / 180));
+                coord[1] = 100 - (int)(hlen * Math.Cos(Math.PI * val / 180));
+            }
+            else
+            {
+                coord[0] = 100 - (int)(hlen * -Math.Sin(Math.PI * val / 180));
+                coord[1] = 100 - (int)(hlen * Math.Cos(Math.PI * val / 180));
+            }
+            return coord;
+        }
+
+        //coord for hour hand
+        private int[] hrCoord(int hval, int mval, int hlen)
+        {
+            int[] coord = new int[2];
+
+            //each hour makes 30 degree
+            //each min makes 0.5 degree
+            int val = (int)((hval * 30) + (mval * 0.5));
+
+            if (val >= 0 && val <= 180)
+            {
+                coord[0] = 100 + (int)(hlen * Math.Sin(Math.PI * val / 180));
+                coord[1] = 100 - (int)(hlen * Math.Cos(Math.PI * val / 180));
+            }
+            else
+            {
+                coord[0] = 100 - (int)(hlen * -Math.Sin(Math.PI * val / 180));
+                coord[1] = 100 - (int)(hlen * Math.Cos(Math.PI * val / 180));
+            }
+            return coord;
+        }
+
+
+
 
         // CRONOMETRO
         bool encendidoCR = false;
@@ -258,7 +326,7 @@ namespace TCE2Reloj
                 segCR = 0;
                 SegundoCR.Text = segCR.ToString();
                 MinutoCR.Text = minCR.ToString();
-                HoraCR.Text = horaCR.ToString();
+                HoraCR2.Text = horaCR.ToString();
             }
             else
             {
@@ -267,7 +335,7 @@ namespace TCE2Reloj
                 horaCR = 0;
                 SegundoCR.Text = segCR.ToString();
                 MinutoCR.Text = minCR.ToString();
-                HoraCR.Text = horaCR.ToString();
+                HoraCR2.Text = horaCR.ToString();
             }
         }
 
@@ -279,7 +347,7 @@ namespace TCE2Reloj
             vueltasCR = 0;
             SegundoCR.Text = segCR.ToString();
             MinutoCR.Text = minCR.ToString();
-            HoraCR.Text = horaCR.ToString();
+            HoraCR2.Text = horaCR.ToString();
             playCR.Load("playbutton.png");
             vueltaTextCR.Text += "------------------\n";
             encendidoCR = false;
@@ -289,7 +357,7 @@ namespace TCE2Reloj
         private void Vuelta_Click(object sender, EventArgs e)
         {
             
-            vueltaTextCR.Text += "Vuelta #"+ ++vueltasCR +"   "+ HoraCR.Text +" : " + MinutoCR.Text +" : "+ SegundoCR.Text+"\n";
+            vueltaTextCR.Text += "Vuelta #"+ ++vueltasCR +"   "+ HoraCR2.Text +" : " + MinutoCR.Text +" : "+ SegundoCR.Text+"\n";
         }
 
 
@@ -322,8 +390,21 @@ namespace TCE2Reloj
 
         int segTEM = 0, horitaTem= 0, minTem=0;
 
+        private void Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
         bool sonando = true;
+
+
         int xyz = -1;
+
+        private void RelojAnalogico_Click(object sender, EventArgs e)
+        {
+
+        }
+
         bool pausado = false;
 //        bool borrado = false;
         private void IniTEM_Click(object sender, EventArgs e)
@@ -438,6 +519,58 @@ namespace TCE2Reloj
             textBoxHora.Clear();
             textBoxMinuto.Clear();
             textBoxSegundo.Clear();
+        }
+
+//      CONTEXT MENU STRIP - NOTIFY ICON
+        private void EsconderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+        private void MostrarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Show();
+        }
+
+        //
+        private void prueba()
+        {
+            Bitmap bmp;
+            Graphics g;
+            bmp = new Bitmap(200, 200);
+            g = Graphics.FromImage(bmp);
+            int minHAND = 110;
+            int mm = 100;
+            
+
+            int fda =  (int)(100 * Math.Sin(Math.PI * seg*6 / 180));
+            int fdaa =  (int)(100 * Math.Cos(Math.PI * seg*6 / 180));
+
+            int px1 = picVacio.Width / 2;
+            int py1 = picVacio.Height / 2;
+
+        //    int x = int.Parse(txtBoxX.Text);
+          //  int y = int.Parse(txtBoxY.Text);
+
+
+            // Segundero
+            g.DrawLine(new Pen(Color.Black, 1f), new Point(100, 100), new Point(fda,fdaa));
+            // Minutero
+            g.DrawLine(new Pen(Color.Black, 3f), new Point(100, 100), new Point(340, 80));
+            // Hora
+            g.DrawLine(new Pen(Color.Black, 5f), new Point(100, 100), new Point(50, 120));
+
+            
+
+            picVacio.Image = bmp;
+            g.Dispose();
+//            picHora.Location= (new Point(4, 4), new Point(32, 23));
+
+
+ //           picHora.Location = new Point(x,y);
+        }
+        private void Button4_Click(object sender, EventArgs e)
+        {
+            prueba();
         }
 
     }
